@@ -1,0 +1,1240 @@
+{
+	"info": {
+		"_postman_id": "",
+		"name": "Wazuh REST API Examples",
+		"description": "https://documentation.wazuh.com/4.0/user-manual/api/reference.html",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Agents",
+			"item": [
+				{
+					"name": "Returns a list with the available agents.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "",
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverip}}:55000/agents",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"agents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a new agent.",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"diamondcity\",\"ip\":\"10.0.0.200\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{serverip}}:55000/agents",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"agents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Returns the key of an agent.",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverip}}:55000/agents/{{agent_id}}/key",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"agents",
+								"{{agent_id}}",
+								"key"
+							]
+						},
+						"description": "This query returns the key to use on the ossec-agent on the host agent."
+					},
+					"response": []
+				},
+				{
+					"name": "Adds one agent to a specific group",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{serverip}}:55000/agents/{{agent_id}}/group/{{group_id}}",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"agents",
+								"{{agent_id}}",
+								"group",
+								"{{group_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adds a list of agents to the specified group.",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"ids\":[\"001\",\"002\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{serverip}}:55000/agents/group/{{group_id}}",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"agents",
+								"group",
+								"{{group_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Returns the sync status in JSON format.",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverip}}:55000/agents/{{agent_id}}/group/is_sync",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"agents",
+								"{{agent_id}}",
+								"group",
+								"is_sync"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Returns the list of outdated agents.",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverip}}:55000/agents/outdated",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"agents",
+								"outdated"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Removes an agent.",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{serverip}}:55000/agents/{{agent_id}}",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"agents",
+								"{{agent_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Removes an agent.",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept-Encoding",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "https://{{serverip}}:55000/agents/010",
+									"protocol": "https",
+									"host": [
+										"{{serverip}}"
+									],
+									"port": "55000",
+									"path": [
+										"agents",
+										"010"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "87"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"57-9nQKzQ0FWl4nhibBUvVDHnSmL2w\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 15 Sep 2020 14:43:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": 0,\n    \"data\": {\n        \"msg\": \"All selected agents were removed\",\n        \"affected_agents\": [\n            \"010\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Returns the list of existing agent groups.",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverip}}:55000/agents/groups",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"agents",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Returns the list of agents in a group.",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverip}}:55000/agents/groups/{{group_id}}",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"agents",
+								"groups",
+								"{{group_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restarts a list of agents.",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"ids\":[\"002\",\"004\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{serverip}}:55000/agents/restart",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"agents",
+								"restart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adds an agent to the specified group.",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{serverip}}:55000/agents/{{agent_id}}/group/{{group_id}}",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"agents",
+								"{{agent_id}}",
+								"group",
+								"{{group_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restarts the specified agent.",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{serverip}}:55000/agents/{{agent_id}}/restart",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"agents",
+								"{{agent_id}}",
+								"restart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Creates a new group.",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{serverip}}:55000/agents/groups/{{newGroupName}}",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"agents",
+								"groups",
+								"{{newGroupName}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Syscollector",
+			"item": [
+				{
+					"name": "Returns the agent’s hardware info.",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverip}}:55000/syscollector/{{agent_id}}/hardware",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"syscollector",
+								"{{agent_id}}",
+								"hardware"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Returns the agent’s network address info.",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverip}}:55000/syscollector/{{agent_id}}/netaddr",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"syscollector",
+								"{{agent_id}}",
+								"netaddr"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Returns the agent’s OS info.",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverip}}:55000/syscollector/{{agent_id}}/os",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"syscollector",
+								"{{agent_id}}",
+								"os"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Manager",
+			"item": [
+				{
+					"name": "Returns if Wazuh configuration is OK.",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverip}}:55000/manager/configuration/validation",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"manager",
+								"configuration",
+								"validation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Returns a summary of the current analysisd stats.",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverip}}:55000/manager/stats/analysisd",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"manager",
+								"stats",
+								"analysisd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Returns the status of the manager processes.",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverip}}:55000/manager/status",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"manager",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restarts Wazuh Manager.",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{serverip}}:55000/manager/restart",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"manager",
+								"restart"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Syscheck",
+			"item": [
+				{
+					"name": "Runs syscheck and rootcheck on an agent (Wazuh launches both processes simultaneously).",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{serverip}}:55000/syscheck/{{agent_id}}",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"syscheck",
+								"{{agent_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Runs syscheck and rootcheck on all agents (Wazuh launches both processes simultaneously).",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{serverip}}:55000/syscheck",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"syscheck"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Returns the syscheck files of an agent.",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverip}}:55000/syscheck/{{agent_id}}",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"syscheck",
+								"{{agent_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Return the timestamp of the last syscheck scan.",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{serverip}}:55000/syscheck/{{agent_id}}/last_scan",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								"syscheck",
+								"{{agent_id}}",
+								"last_scan"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "API Version",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Encoding",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://{{serverip}}:55000/",
+					"protocol": "https",
+					"host": [
+						"{{serverip}}"
+					],
+					"port": "55000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "API",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Encoding",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"command\":\"restart-ossec0\", \"arguments\": [\"-\", \"null\", \"(from_the_server)\", \"(no_rule_id)\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{serverip}}:55000/",
+							"protocol": "https",
+							"host": [
+								"{{serverip}}"
+							],
+							"port": "55000",
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "155"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"9b-tUoGyJbTgj+i1gHQiuWI251ynwc\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 29 Oct 2020 17:24:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": 0,\n    \"data\": {\n        \"msg\": \"Welcome to Wazuh HIDS API\",\n        \"api_version\": \"v3.13.1\",\n        \"hostname\": \"nukaworld\",\n        \"timestamp\": \"Thu Oct 29 2020 17:24:33 GMT+0000 (UTC)\"\n    }\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
